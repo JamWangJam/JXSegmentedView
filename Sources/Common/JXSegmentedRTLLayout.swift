@@ -15,8 +15,12 @@ public protocol JXSegmentedViewRTLCompatible: class {
 
 public extension JXSegmentedViewRTLCompatible {
     
-    /// 根据当前系统布局方式返回是否需要RTL布局
+    /// 根据全局布局方向提供闭包或系统布局方式判断是否需要 RTL 布局。
+    /// - Returns: 当前布局方向为从右到左时返回 true。
     func segmentedViewShouldRTLLayout() -> Bool {
+        if let layoutDirectionProvider = JXSegmentedView.layoutDirectionProvider {
+            return layoutDirectionProvider() == .rightToLeft
+        }
         return UIView.userInterfaceLayoutDirection(for: UIView.appearance().semanticContentAttribute) == .rightToLeft
     }
     

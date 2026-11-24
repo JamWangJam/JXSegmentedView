@@ -104,6 +104,21 @@ Execute `pod repo update` first, then execute `pod install`
 
 ## Usage
 
+### Custom global layout direction
+
+If the host app manages its own language and layout direction, set the global closure on the main thread before creating any `JXSegmentedView` or `JXSegmentedListContainerView` instances:
+
+```swift
+JXSegmentedView.layoutDirectionProvider = {
+    // Read the host app's current language inside the closure.
+    return isArab ? .rightToLeft : .leftToRight
+}
+```
+
+RTL checks in segmented views, cells, and list containers use this closure whenever it is set. The closure is evaluated on every check, without caching its result. If it is unset or assigned `nil`, the existing `UIView.appearance().semanticContentAttribute` logic is used.
+
+Changing the closure or language does not automatically update existing views. Recreate the affected segmented views and list containers after changing direction.
+
 ### `JXSegmentedView` example
 
 1.JXSegmentedView initialize
