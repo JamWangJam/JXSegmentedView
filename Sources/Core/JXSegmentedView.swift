@@ -148,10 +148,6 @@ public extension JXSegmentedViewDelegate {
 
 /// 内部会自己找到父UIViewController，然后将其automaticallyAdjustsScrollViewInsets设置为false，这一点请知晓。
 open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
-    /// 全局布局方向提供闭包，nil 时使用 UIView.appearance().semanticContentAttribute。
-    /// 在主线程、创建分段视图和列表容器之前设置；闭包在每次判断方向时同步调用。
-    public static var layoutDirectionProvider: (() -> UIUserInterfaceLayoutDirection)? = nil
-
     open weak var dataSource: JXSegmentedViewDataSource? {
         didSet {
             dataSource?.reloadData(selectedIndex: selectedIndex)

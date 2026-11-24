@@ -109,9 +109,9 @@ Execute `pod repo update` first, then execute `pod install`
 If the host app manages its own language and layout direction, set the global closure on the main thread before creating any `JXSegmentedView` or `JXSegmentedListContainerView` instances:
 
 ```swift
-JXSegmentedView.layoutDirectionProvider = {
+JXSegmentedLayoutDirection.isRTLProvider = {
     // Read the host app's current language inside the closure.
-    return isArab ? .rightToLeft : .leftToRight
+    return isArab
 }
 ```
 

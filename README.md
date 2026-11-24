@@ -131,9 +131,9 @@ $ swift build
 如果主工程自行管理语言和布局方向，可以在主线程、创建 `JXSegmentedView` 和 `JXSegmentedListContainerView` 之前设置全局闭包：
 
 ```swift
-JXSegmentedView.layoutDirectionProvider = {
+JXSegmentedLayoutDirection.isRTLProvider = {
     // isArab 为主工程当前语言的判断结果，在闭包内实时读取。
-    return isArab ? .rightToLeft : .leftToRight
+    return isArab
 }
 ```
 
